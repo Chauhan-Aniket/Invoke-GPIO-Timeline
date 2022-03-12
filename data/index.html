@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wave TImeline</title>
+  <style>
+    .btn-container,
+    .zoom-slider {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-container input {
+      margin-right: 10px;
+    }
+
+    .pin-table,
+    th,
+    td {
+      border: 1px solid black;
+      padding: 10px;
+      position: relative;
+    }
+
+    tbody,
+    tr {
+      position: relative;
+    }
+
+    .pin-table tr th {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    .pin-table {
+      border-collapse: collapse;
+      /* display: none; */
+    }
+
+    .pin-row td:nth-child(2) {
+      position: relative;
+      width: 100%;
+      overflow: auto hidden;
+    }
+
+    svg {
+      position: relative;
+    }
+
+    svg line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(10px, -50%);
+      height: 100%;
+      stroke: rgba(0, 0, 255, 0.3);
+      stroke-width: 50;
+    }
+
+    .progress-line {
+      position: absolute;
+      top: 0;
+      left: 114px;
+      padding: 0;
+      width: 1px;
+      height: 100%;
+      background: #000;
+      animation: progress linear;
+      animation-play-state: paused;
+    }
+
+    @keyframes progress {
+      from {
+        left: 114px;
+      }
+
+      to {
+        left: 100%;
+      }
+    }
+
+    #wave-timeline {
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Timeline</h2>
+
+  <table class="pin-table">
+    <tr>
+      <th>GPIO PINS</th>
+      <th style="width: 100%; padding: 10px;">
+        <div id="audio-spectrum"></div>
+        <div id="wave-timeline"></div>
+      </th>
+    </tr>
+
+    <tbody>
+      <tr class="pin-row pin-zero">
+        <td>D0(GPIO16)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-zero">
+            <line id="line-zero" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-one">
+        <td>D1(GPIO5)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-one">
+            <line id="line-one" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-two">
+        <td>D2(GPIO4)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-two">
+            <line id="line-two" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-three">
+        <td>D3(GPIO0)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-three">
+            <line id="line-three" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-four">
+        <td>D4(GPIO2)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-four">
+            <line id="line-four" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-five">
+        <td>D5(GPIO14)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-five">
+            <line id="line-five" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-six">
+        <td>D6(GPIO12)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-six">
+            <line id="line-six" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-seven">
+        <td>D7(GPIO13)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-seven">
+            <line id="line-seven" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="pin-row pin-eight">
+        <td>D8(GPIO15)</td>
+        <td>
+          <svg height="10" width="100%" class="svg-eight">
+            <line id="line-eight" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr class="progress-line">
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <div id="wave-timeline"></div> -->
+  <!-- <div id="audio-spectrum"></div> -->
+
+  <br>
+  <!-- Create action buttons -->
+  <div class="btn-container">
+    <input type="button" id="btn-play" value="Play" disabled="disabled" />
+    <input type="button" id="btn-pause" value="Pause" disabled="disabled" />
+    <input type="button" id="btn-stop" value="Stop" disabled="disabled" />
+  </div>
+  <br>
+  <!-- Zoom slider -->
+  <div class="zoom-slider">
+    <label for="slider">-</label>
+    <input type="range" id="slider" value="0">
+    <label for="slider">+</label>
+  </div>
+
+  <!-- Wavesurfer -->
+  <script src="https://unpkg.com/wavesurfer.js"></script>
+  <!-- Wavesurfer Timeline plugin -->
+  <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
