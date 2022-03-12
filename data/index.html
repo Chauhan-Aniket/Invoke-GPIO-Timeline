@@ -61,32 +61,6 @@
       stroke: rgba(0, 0, 255, 0.3);
       stroke-width: 50;
     }
-
-    .progress-line {
-      position: absolute;
-      top: 0;
-      left: 114px;
-      padding: 0;
-      width: 1px;
-      height: 100%;
-      background: #000;
-      animation: progress linear;
-      animation-play-state: paused;
-    }
-
-    @keyframes progress {
-      from {
-        left: 114px;
-      }
-
-      to {
-        left: 100%;
-      }
-    }
-
-    #wave-timeline {
-      position: relative;
-    }
   </style>
 </head>
 
@@ -174,8 +148,6 @@
             <line id="line-eight" x1="0" y1="0" x2="0" y2="0" />
           </svg>
         </td>
-      </tr>
-      <tr class="progress-line">
       </tr>
     </tbody>
   </table>

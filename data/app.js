@@ -29,8 +29,6 @@ document.querySelector("#slider").oninput = function () {
 	Spectrum.zoom(Number(this.value));
 };
 
-let progressLine = document.querySelector(".progress-line");
-
 // Handle Play button
 buttons.play.addEventListener(
 	"click",
@@ -41,8 +39,6 @@ buttons.play.addEventListener(
 		buttons.stop.disabled = false;
 		buttons.pause.disabled = false;
 		buttons.play.disabled = true;
-		progressLine.style.animationPlayState = "running";
-		progressLine.style.animation = "progress";
 	},
 	false
 );
@@ -56,7 +52,6 @@ buttons.pause.addEventListener(
 		// Enable/Disable respectively buttons
 		buttons.pause.disabled = true;
 		buttons.play.disabled = false;
-		progressLine.style.animationPlayState = "paused";
 	},
 	false
 );
@@ -71,9 +66,6 @@ buttons.stop.addEventListener(
 		buttons.pause.disabled = true;
 		buttons.play.disabled = false;
 		buttons.stop.disabled = true;
-		progressLine.style.animation = "none";
-		progressLine.offsetHeight; /* trigger reflow */
-		progressLine.style.animation = null;
 	},
 	false
 );
@@ -84,7 +76,6 @@ Spectrum.on("ready", function () {
 
 	let duration = Spectrum.getDuration();
 	console.log(duration);
-	progressLine.style.animationDuration = `${duration}s`;
 
 	let pin0In = 15;
 	let pin0Out = 25;
